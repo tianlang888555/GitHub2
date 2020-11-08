@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace表示这个文件的作用域-->
+<mapper namespace="com.cdlg.exam.dao.StudentDao">
+    <select id="selectStudentCount" resultType="int">
+        select count(*) from student where id=#{id} and spswd=#{spswd};
+    </select>
+    <select id="selectStudent" resultType="com.cdlg.exam.proj.Student">
+        select id,name,age,sex,teacherName,teacherId,spswd from student where id=#{id} and spswd=#{spswd};
+    </select>
+    <insert id="addStudent">
+        insert into student(name,age,sex,teacherName,teacherId,spswd)
+         value(#{name},#{age},#{sex},#{teacherName},#{teacherId},#{spswd})
+    </insert>
+    <select id="selectStudentByTeacher" resultType="com.cdlg.exam.proj.Student">
+        select id,name,age,sex,teacherName,teacherId,spswd from student where teacherName=#{teacherName} and teacherId=#{teacherId};
+    </select>
+</mapper>

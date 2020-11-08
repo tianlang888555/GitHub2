@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace表示这个文件的作用域-->
+<mapper namespace="com.cdlg.exam.dao.PaperDao">
+    <insert id="addPaper" >
+        insert into paper(title,ra,rb,rc,rd,`right`) values(#{title},#{ra},
+        #{rb},#{rc},#{rd},#{right});
+    </insert>
+    <select id="allPaper" resultType="com.cdlg.exam.proj.Paper">
+        select paperId,title,ra,rb,rc,rd,`right` from paper order by paperId;
+    </select>
+    <select id="stuPaper" resultType="com.cdlg.exam.proj.Paper">
+        select paperId,title,ra,rb,rc,rd,`right`
+        from paper order by rand() limit 0,10;
+    </select>
+    <select id="judge" resultType="java.lang.Integer">
+        select count(*) from paper where paperId=#{id}
+        and `right`=#{rig};
+    </select>
+</mapper>
